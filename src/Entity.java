@@ -54,9 +54,9 @@ public void HitEnemy(Entity Receiving) {
 				doDamage = true; //если выпало 5 или 6 изменяем значение флага
 			}
 		} while ((counter < modOfAttack)&&(doDamage == false));
-	int randomPoint = new Random().nextInt(this.damage.length);
+	int randomPoint = new Random().nextInt(this.damage.length); // выбираем рандомное число
 	out.printf("Здоровье до удара:" + Receiving.health + "\n");
-	Receiving.health = Receiving.health - damage[randomPoint];
+	Receiving.health = Receiving.health - damage[randomPoint]; // наносим урон по рандомному указателю из массива damage
 	out.printf("Здоровье после удара:" + Receiving.health + "\n");
 }
 
