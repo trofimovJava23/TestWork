@@ -14,13 +14,14 @@ static int healAmount;
 static int minDamage, maxDamage; // min and max for Damage collection
 static int damage[]; //collection of int minDamage...maxDamage
 
-public boolean Heal() {
-	if (numberOfHeals < 4) {
-		this.health = this.health + healAmount;
-		if (this.health > healthMax) {
+//Method for heal Entity
+public boolean Heal() { // в случае если лечение возможно и было осуществлено возвращаем true
+	if (numberOfHeals < 4) && (this.health != this.healthMax) {
+		this.health = this.health + healAmount; //увеличивам значение здоровья на значение, равное 30% от максимального, инициализированное в конструкторе
+		if (this.health > healthMax) { //если превышает максимальное количество здоровья, то присваиваем его
 			this.health = healthMax;
 		}
-		this.numberOfHeals++;
+		this.numberOfHeals++; // счетчик количества лечений
 		return true;
 	}
 	else {return false;}
