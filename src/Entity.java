@@ -1,15 +1,27 @@
-import java.lang.Double;
+import java.lang.Math;
+import java.lang.Long;
 
 public class Entity {
 
-int attack; //entered [1..30] , need init
-int defence; //entered [1..30] , need init
+int attack; //entered [1..30] ???
+int defence; //entered [1..30] ???
 
 
-int health; //entered [1..healthMax], need init
+int health; //entered [1..healthMax] ???
 int healthMax;
 int numberOfHeals = 0; //entered [0..4]
-public void Heal() {
+int healAmount;
+
+public boolean Heal() {
+	if (numberOfHeals < 4) {
+		this.health = this.health + healAmount;
+		if (this.health > healthMax) {
+			this.health = healthMax;
+		}
+		this.numberOfHeals++;
+		return true;
+	}
+	else {return false;}
 	
 }
 
@@ -22,6 +34,7 @@ public Entity(int attack, int defence, int health, int healthMax) {
 	this.defence = defence;
 	this.health = health;
 	this.healthMax = healthMax;
+	this.healAmount = (int) (healthMax*0.3); //amount of Heal
 }
 
 
