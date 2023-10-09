@@ -1,37 +1,22 @@
-import java.lang.Math;
-import java.lang.Long;
+import java.util.Random;
+
+import static java.lang.System.out;
 
 public class Entity {
 
-static int attack; //entered [1..30] ??? 
-static int defence; //entered [1..30] ???
+final int attack; //entered [1..30] ??? 
+final int defence; //entered [1..30] ???
 
 
 int health; //entered [1..healthMax] ???
-static int healthMax;//Max value for health
+final int healthMax;//Max value for health
 int numberOfHeals = 0; //entered [0..4]
-static int healAmount;
-static int minDamage, maxDamage; // min and max for Damage collection
-static int damage[]; //collection of int minDamage...maxDamage
-
-//Method for heal Entity
-public boolean Heal() { // в случае если лечение возможно и было осуществлено возвращаем true
-	if (numberOfHeals < 4) && (this.health != this.healthMax) {
-		this.health = this.health + healAmount; //увеличивам значение здоровья на значение, равное 30% от максимального, инициализированное в конструкторе
-		if (this.health > healthMax) { //если превышает максимальное количество здоровья, то присваиваем его
-			this.health = healthMax;
-		}
-		this.numberOfHeals++; // счетчик количества лечений
-		return true;
-	}
-	else {return false;}
-	
-}
+int healAmount;
+int minDamage, maxDamage; // min and max for Damage collection
+int damage[]; //collection of int minDamage...maxDamage
 
 
-public void Fight() {
-	
-}
+//конструктор
 public Entity(int attack, int defence, int health, int healthMax, int minDamage, int maxDamage) {
 	this.attack = attack;
 	this.defence = defence;
@@ -44,5 +29,35 @@ public Entity(int attack, int defence, int health, int healthMax, int minDamage,
 	}
 }
 
+//Method for heal Entity
+public boolean Heal() { // в случае если лечение возможно и было осуществлено возвращаем true
+	if ((numberOfHeals < 4) && (this.health != this.healthMax)) {
+		this.health = this.health + healAmount; //увеличивам значение здоровья на значение, равное 30% от максимального, инициализированное в конструкторе
+		if (this.health > healthMax) { //если превышает максимальное количество здоровья, то присваиваем его
+			this.health = healthMax;
+		}
+		this.numberOfHeals++; // счетчик количества лечений
+		return true;
+	}
+	else {return false;}
+	
+}
+
+public void HitEnemy(Entity Receiving) {
+	int modOfAttack = this.attack - Receiving.defence; // 
+	boolean doDamage = false; //флаг на нанесение урона
+	int counter = 0; //счетчик количества бросков
+		do {
+			int Dice = new Random().nextInt(6)+1; //бросок кубика
+			counter++; //увеличиваем счетчик
+			if (Dice>=5) {
+				doDamage = true; //если выпало 5 или 6 изменяем значение флага
+			}
+		} while ((counter < modOfAttack)&&(doDamage == false));
+	int randomPoint = new Random().nextInt(this.damage.length);
+	out.printf("Здоровье до удара:" + Receiving.health + "\n");
+	Receiving.health = Receiving.health - damage[randomPoint];
+	out.printf("Здоровье после удара:" + Receiving.health + "\n");
+}
 
 }
