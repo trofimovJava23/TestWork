@@ -17,6 +17,12 @@ int damage[]; //collection of int M..N
 public void Fight() {
 	
 }
+public Entity(int attack, int defence, int health, int healthMax) {
+	this.attack = attack;
+	this.defence = defence;
+	this.health = health;
+	this.healthMax = healthMax;
+}
 
 
 }

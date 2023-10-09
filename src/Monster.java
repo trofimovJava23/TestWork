@@ -1,8 +1,8 @@
 
 public class Monster extends Entity {
 
-	public Monster() {
-		// TODO Auto-generated constructor stub
+	public Monster(int attack, int defence, int health, int healthMax) {
+		super(attack,defence,health,healthMax);
 	}
 
 }

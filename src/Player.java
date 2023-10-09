@@ -1,8 +1,7 @@
 
 public class Player extends Entity {
-
-	public Player() {
-		// TODO Auto-generated constructor stub
+	public Player (int attack, int defence, int health, int healthMax) {
+		super(attack, defence, health, healthMax);
 	}
-
+	
 }
