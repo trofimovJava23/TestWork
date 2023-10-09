@@ -3,14 +3,16 @@ import java.lang.Long;
 
 public class Entity {
 
-int attack; //entered [1..30] ???
-int defence; //entered [1..30] ???
+static int attack; //entered [1..30] ??? 
+static int defence; //entered [1..30] ???
 
 
 int health; //entered [1..healthMax] ???
-int healthMax;
+static int healthMax;//Max value for health
 int numberOfHeals = 0; //entered [0..4]
-int healAmount;
+static int healAmount;
+static int minDamage, maxDamage; // min and max for Damage collection
+static int damage[]; //collection of int minDamage...maxDamage
 
 public boolean Heal() {
 	if (numberOfHeals < 4) {
@@ -25,16 +27,20 @@ public boolean Heal() {
 	
 }
 
-int damage[]; //collection of int M..N
+
 public void Fight() {
 	
 }
-public Entity(int attack, int defence, int health, int healthMax) {
+public Entity(int attack, int defence, int health, int healthMax, int minDamage, int maxDamage) {
 	this.attack = attack;
 	this.defence = defence;
 	this.health = health;
 	this.healthMax = healthMax;
 	this.healAmount = (int) (healthMax*0.3); //amount of Heal
+	this.damage = new int[maxDamage - minDamage +1]; // add Damage collection size of max-min 
+	for (int count = 0; count<(maxDamage-minDamage +1); count++) {
+		this.damage[count]=minDamage+count;
+	}
 }
 
 
