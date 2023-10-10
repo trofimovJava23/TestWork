@@ -16,6 +16,7 @@ int minDamage, maxDamage; // min and max for Damage collection
 int damage[]; //collection of int minDamage...maxDamage
 
 
+
 //конструктор
 public Entity(int attack, int defence, int health, int healthMax, int minDamage, int maxDamage) {
 	this.attack = attack;
@@ -55,9 +56,9 @@ public void HitEnemy(Entity Receiving) {
 			}
 		} while ((counter < modOfAttack)&&(doDamage == false));
 	int randomPoint = new Random().nextInt(this.damage.length); // выбираем рандомное число
-	out.printf("Здоровье до удара:" + Receiving.health + "\n");
+	//out.printf("Здоровье до удара:" + Receiving.health + "\n");
 	Receiving.health = Receiving.health - damage[randomPoint]; // наносим урон по рандомному указателю из массива damage
-	out.printf("Здоровье после удара:" + Receiving.health + "\n");
+	//out.printf("Здоровье после удара:" + Receiving.health + "\n");
 }
 
 }
