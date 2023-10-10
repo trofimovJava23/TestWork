@@ -86,7 +86,7 @@ class GameFrame extends JFrame implements ActionListener {
 				Monster NewMonster = new Monster(attack, defence, health, healthMax, minDamage, maxDamage);
 			}
 		} catch (NumberFormatException errFormat) {
-			out.printf("Неверный формат");
+			new ErrorFrame("Неверный формат");
 		}
 		
 	}
