@@ -11,7 +11,6 @@ public class ErrorFrame extends JFrame {
 		ErrorLabel = new JLabel(ErrorString);
 		add(ErrorLabel);
 		pack();
-		setSize(200, 100);
 		setVisible(true);
 		
 	}
