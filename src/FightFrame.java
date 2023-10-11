@@ -11,12 +11,12 @@ import javax.swing.SwingUtilities;
 public class FightFrame extends JFrame implements ActionListener {
 	private static final long serialVersionUID =1L;
 	
-	JLabel playerLabel = new JLabel("Текущее здоровье игрока:  "+Integer.toString(PlayFrame.readyPlayer.health));
-	JLabel monsterLabel = new JLabel("Текущее здоровье монстра:  "+Integer.toString(PlayFrame.readyMonster.health));
+	JLabel playerLabel = new JLabel("Текущее здоровье игрока:  "+Integer.toString(PlayFrame.readyPlayer.health)+"  Потрачено хилок: " + Integer.toString(PlayFrame.readyPlayer.numberOfHeals) + " Из 4");
+	JLabel monsterLabel = new JLabel("Текущее здоровье монстра:  "+Integer.toString(PlayFrame.readyMonster.health)+"  Потрачено хилок: " + Integer.toString(PlayFrame.readyMonster.numberOfHeals) + " Из 4");
 	Runnable UpdateInfo = new Runnable() {
 	public void run() {
-		playerLabel.setText("Текущее здоровье игрока:  "+Integer.toString(PlayFrame.readyPlayer.health));
-		monsterLabel.setText("Текущее здоровье монстра:  "+Integer.toString(PlayFrame.readyMonster.health));
+		playerLabel.setText("Текущее здоровье игрока:  "+Integer.toString(PlayFrame.readyPlayer.health)+"  Потрачено хилок: " + Integer.toString(PlayFrame.readyPlayer.numberOfHeals) + " Из 4");
+		monsterLabel.setText("Текущее здоровье монстра:  "+Integer.toString(PlayFrame.readyMonster.health)+"  Потрачено хилок: " + Integer.toString(PlayFrame.readyMonster.numberOfHeals) + " Из 4");
 	     }
 	 };
 	
@@ -48,16 +48,19 @@ public class FightFrame extends JFrame implements ActionListener {
 			SwingUtilities.invokeLater(UpdateInfo);
 			}
 		else if (e.getSource().equals(takeHeal)) {
+			
 			if (PlayFrame.readyPlayer.Heal()){
 				new InfoFrame("Вы полечились");
 				SwingUtilities.invokeLater(UpdateInfo);
 				
-			} else {
+			} else if (PlayFrame.readyPlayer.numberOfHeals > 3){
 				new InfoFrame("Закончились хилки");
-				playerLabel.updateUI();
 				SwingUtilities.invokeLater(UpdateInfo);
+			} else if (PlayFrame.readyPlayer.health == PlayFrame.readyPlayer.healthMax) {
+				new InfoFrame("Здоровье полное");
 			}
-			}
+			
+		}
 		
 	}
 	
