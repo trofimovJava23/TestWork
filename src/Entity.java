@@ -14,6 +14,7 @@ int numberOfHeals = 0; //entered [0..4]
 int healAmount;
 int minDamage, maxDamage; // min and max for Damage collection
 int damage[]; //collection of int minDamage...maxDamage
+boolean alive = true; //alive or nor alive
 
 
 
@@ -24,6 +25,9 @@ public Entity(int attack, int defence, int health, int healthMax, int minDamage,
 	this.health = health;
 	this.healthMax = healthMax;
 	this.healAmount = (int) (healthMax*0.3); //amount of Heal
+	if (this.healAmount == 0) {
+		this.healAmount = 1;
+	}
 	this.damage = new int[maxDamage - minDamage +1]; // add Damage collection size of max-min 
 	for (int count = 0; count<(maxDamage-minDamage +1); count++) {
 		this.damage[count]=minDamage+count;
@@ -44,7 +48,7 @@ public boolean Heal() { // в случае если лечение возмож�
 	
 }
 
-public void HitEnemy(Entity Receiving) {
+public int HitEnemy(Entity Receiving) {
 	int modOfAttack = this.attack - Receiving.defence; // 
 	boolean doDamage = false; //флаг на нанесение урона
 	int counter = 0; //счетчик количества бросков
@@ -58,7 +62,12 @@ public void HitEnemy(Entity Receiving) {
 	int randomPoint = new Random().nextInt(this.damage.length); // выбираем рандомное число
 	//out.printf("Здоровье до удара:" + Receiving.health + "\n");
 	Receiving.health = Receiving.health - damage[randomPoint]; // наносим урон по рандомному указателю из массива damage
+	if (Receiving.health <= 0) {
+		Receiving.health = 0;
+		Receiving.alive = false; // если количество хп меньше либо равно нулю существо погибает
+	}
 	//out.printf("Здоровье после удара:" + Receiving.health + "\n");
+	return damage[randomPoint];
 }
 
 }

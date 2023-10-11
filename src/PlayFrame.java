@@ -19,7 +19,7 @@ public class PlayFrame extends JFrame implements ActionListener{
 	
 static Player readyPlayer = new Player(0,0,0,0,0,0);
 static Monster readyMonster = new Monster(0,0,0,0,0,0);
-static Entity readyEntity = new Entity(0,0,0,0,0,0); //буфер
+
 
 public PlayFrame() {
 	setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -38,9 +38,7 @@ public PlayFrame() {
 	
 }
 
-/**
- *
- */
+
 @Override
 public void actionPerformed(ActionEvent e) {
 	if (e.getSource().equals(addPlayerButton)) {

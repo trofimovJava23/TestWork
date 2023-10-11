@@ -10,7 +10,12 @@ public class Monster extends Entity {
 		return someMonster;
 	}
 	
-	public autoHeal() {
-		this.Heal();
+	public boolean autoHeal() {
+		if ((double) this.health < 0.3*this.healthMax) {
+			this.Heal();
+			return true;
+		} else {
+			return false;
+		}
 	}
 }
