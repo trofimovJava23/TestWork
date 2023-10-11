@@ -17,7 +17,7 @@ public class PlayFrame extends JFrame implements ActionListener{
 	JButton startButton = new JButton("Начать игру");
 	
 	
-static Player readyPlayer = new Player(0,0,0,0,0,0);
+static Player readyPlayer = new Player(0,0,0,0,0,0); //создаем игрока и монстра и инициализируем их
 static Monster readyMonster = new Monster(0,0,0,0,0,0);
 
 
@@ -32,6 +32,8 @@ public PlayFrame() {
 	addPlayerButton.addActionListener(this);
 	addMonsterButton.addActionListener(this);
 	startButton.addActionListener(this);
+	addMonsterButton.setEnabled(false);
+	startButton.setEnabled(false);
 	pack();
 	setSize(550, 100);
 	setVisible(true);
@@ -41,16 +43,18 @@ public PlayFrame() {
 
 @Override
 public void actionPerformed(ActionEvent e) {
-	if (e.getSource().equals(addPlayerButton)) {
+	if (e.getSource().equals(addPlayerButton)) { //добавить игрока - EnterFrame с параметром 0
 		new EnterFrame(0);
-		addPlayerButton.setEnabled(false);	
+		addPlayerButton.setEnabled(false);
+		addMonsterButton.setEnabled(true);
 		}
-	else if (e.getSource().equals(addMonsterButton)) {
+	else if (e.getSource().equals(addMonsterButton)) { //добавить монстра - EnterFrame с параметром 1
 		new EnterFrame(1);
 		addMonsterButton.setEnabled(false);
+		startButton.setEnabled(true);
 		}
-	else if (e.getSource().equals(startButton)) {
-		if ((addPlayerButton.isEnabled() & addMonsterButton.isEnabled()) == false) {
+	else if ((e.getSource().equals(startButton)) & (PlayFrame.readyMonster.health > 0)) { //проверяем дополнительно готов ли монстр
+		if ((addPlayerButton.isEnabled() & addMonsterButton.isEnabled()) == false) { // если кнопки доступны значит данные не ввели
 			setVisible(false);
 			new FightFrame();
 		} else {

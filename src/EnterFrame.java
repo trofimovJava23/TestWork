@@ -38,11 +38,11 @@ class EnterFrame extends JFrame implements ActionListener {
 	 
 	
 	public EnterFrame(int flag) {
-		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE); //окно не закрывается пока пользователь не введет данные
 		setLayout(new FlowLayout(FlowLayout.LEFT));
-		this.flag = flag;
+		this.flag = flag; //получаем значение флага при создании фрейма и передаем свойству
 		add(HelloLabel);
-		add(Box.createHorizontalStrut(400));
+		add(Box.createHorizontalStrut(400)); //верстка поехала, не разобрался, добавил для смотрибельности
 		add(AttackLabel);
 		add(textFieldAttack);
 		add(Box.createHorizontalStrut(50));
@@ -57,7 +57,7 @@ class EnterFrame extends JFrame implements ActionListener {
 		add(MaxDamageLabel);
 		add(textFieldMaxDamage);
 		add(saveButton);
-		saveButton.addActionListener(this);
+		saveButton.addActionListener(this); //считываем событие нажатия на кнопку
 		pack();
 		setSize(550, 400);
 		setVisible(true);
@@ -65,7 +65,7 @@ class EnterFrame extends JFrame implements ActionListener {
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		try {
+		try { //далее проверки на правильность ввода и выдача ошибок
 			attack = Integer.parseInt(textFieldAttack.getText());
 			if ((attack < 1) | (attack > 30)) {
 				throw new OutOfRangeException("Параметр атаки должен быть в пределах от 1 до 30");
@@ -90,13 +90,14 @@ class EnterFrame extends JFrame implements ActionListener {
 			if (maxDamage <= minDamage) {
 				throw new OutOfRangeException("Максимальное значение урона должно быть больше минимального");
 			}
+			//в зависимости от переданного значения при создании фрейма записываем данные в static свойства класса PlayFrame
 			if (flag ==0) {
 				PlayFrame.readyPlayer = new Player(attack,defence,health,healthMax,minDamage,maxDamage);
 			} else if (flag == 1) {
 				PlayFrame.readyMonster = new Monster(attack,defence,health,healthMax,minDamage,maxDamage);
 			}
 			
-			setVisible(false);		
+			setVisible(false);	//записали, убираем фрейм	
 		} catch (NumberFormatException errFormat) {
 			new InfoFrame("Вводите только положительные целые числа и заполните все поля");
 		} catch (OutOfRangeException errAmount) {	

@@ -8,7 +8,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 
 
-//Класс для вывода ошибок
+//Класс для вывода информационных окон
 public class InfoFrame extends JFrame implements ActionListener  {
 	private static final long serialVersionUID =1L;
 	JLabel infoLabel;
@@ -28,7 +28,7 @@ public class InfoFrame extends JFrame implements ActionListener  {
 	
 	public void actionPerformed(ActionEvent e) {
 		setVisible(false);
-		if ((!PlayFrame.readyPlayer.alive) |  (!PlayFrame.readyMonster.alive)) {
+		if ((!PlayFrame.readyPlayer.alive) |  (!PlayFrame.readyMonster.alive)) { //если кто-то умер закрываем программу после нажатия ОК
 			System.exit(0);
 		}
 	}
