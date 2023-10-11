@@ -38,23 +38,25 @@ public PlayFrame() {
 	
 }
 
+/**
+ *
+ */
 @Override
 public void actionPerformed(ActionEvent e) {
 	if (e.getSource().equals(addPlayerButton)) {
-		new EnterFrame();
-		
-		//out.print(readyPlayer.attack + "\n");
-		//addPlayerButton.disable();
-		
+		new EnterFrame(0);
+		addPlayerButton.setEnabled(false);	
 		}
 	else if (e.getSource().equals(addMonsterButton)) {
-		new EnterFrame();
-		//readyMonster = new Monster(readyEntity.attack,readyEntity.defence,readyEntity.health, readyEntity.healthMax,readyEntity.minDamage,readyEntity.maxDamage);
-		//out.print(readyMonster.attack + "\n");
-		//addMonsterButton.disable();
-	}
+		new EnterFrame(1);
+		addMonsterButton.setEnabled(false);
+		}
 	else if (e.getSource().equals(startButton)) {
-		
+		if ((addPlayerButton.isEnabled() & addMonsterButton.isEnabled()) == false) {
+			
+		} else {
+			new ErrorFrame("Вы не готовы начать, введите данные");
+		}
 	}
 	
 }

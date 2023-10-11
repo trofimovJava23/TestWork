@@ -15,8 +15,8 @@ class EnterFrame extends JFrame implements ActionListener {
 
 	private static final long serialVersionUID =1L;
 	
-	Entity readyEntity;
 	int attack,defence,health,healthMax,minDamage,maxDamage;
+	int flag = 2; //если равно 0 - вводим данные игрока, если 1 - монстра
 		
 	JLabel HelloLabel = new JLabel("Приветствую! Введите данные, затем нажмите кнопку ВВЕСТИ ПАРАМЕТРЫ");
 		
@@ -37,10 +37,10 @@ class EnterFrame extends JFrame implements ActionListener {
 	
 	 
 	
-	public EnterFrame() {
+	public EnterFrame(int flag) {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setLayout(new FlowLayout(FlowLayout.LEFT));
-		
+		this.flag = flag;
 		add(HelloLabel);
 		add(Box.createHorizontalStrut(400));
 		add(AttackLabel);
@@ -90,7 +90,12 @@ class EnterFrame extends JFrame implements ActionListener {
 			if (maxDamage <= minDamage) {
 				throw new OutOfRangeException("Максимальное значение урона должно быть больше минимального");
 			}
-			readyEntity = new Entity(attack, defence, health, healthMax, minDamage, maxDamage);
+			if (flag ==0) {
+				PlayFrame.readyPlayer = new Player(attack,defence,health,healthMax,minDamage,maxDamage);
+			} else if (flag == 1) {
+				PlayFrame.readyMonster = new Monster(attack,defence,health,healthMax,minDamage,maxDamage);
+			}
+			
 			setVisible(false);		
 		} catch (NumberFormatException errFormat) {
 			new ErrorFrame("Вводите только положительные целые числа и заполните все поля");
