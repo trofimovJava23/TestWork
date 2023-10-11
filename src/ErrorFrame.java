@@ -2,6 +2,8 @@ import java.awt.FlowLayout;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
+
+//Класс для вывода ошибок
 public class ErrorFrame extends JFrame {
 	private static final long serialVersionUID =1L;
 	JLabel ErrorLabel;
