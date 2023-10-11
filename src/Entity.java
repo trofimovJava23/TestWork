@@ -60,14 +60,14 @@ public int HitEnemy(Entity Receiving) {
 			}
 		} while ((counter < modOfAttack)&&(doDamage == false));
 	int randomPoint = new Random().nextInt(this.damage.length); // выбираем рандомное число
-	//out.printf("Здоровье до удара:" + Receiving.health + "\n");
+	
 	Receiving.health = Receiving.health - damage[randomPoint]; // наносим урон по рандомному указателю из массива damage
 	if (Receiving.health <= 0) {
 		Receiving.health = 0;
 		Receiving.alive = false; // если количество хп меньше либо равно нулю существо погибает
 	}
-	//out.printf("Здоровье после удара:" + Receiving.health + "\n");
 	return damage[randomPoint];
 }
+
 
 }

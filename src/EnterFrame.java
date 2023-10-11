@@ -38,7 +38,7 @@ class EnterFrame extends JFrame implements ActionListener {
 	 
 	
 	public EnterFrame(int flag) {
-		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		setLayout(new FlowLayout(FlowLayout.LEFT));
 		this.flag = flag;
 		add(HelloLabel);

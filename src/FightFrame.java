@@ -47,7 +47,7 @@ public class FightFrame extends JFrame implements ActionListener {
 			int playerDamage = PlayFrame.readyPlayer.HitEnemy(PlayFrame.readyMonster);
 			if (PlayFrame.readyMonster.alive == false) {
 				new InfoFrame("Вы победили монстра");
-				//System.exit(0);
+				return;
 			}
 			boolean monsterUseHeal = PlayFrame.readyMonster.autoHeal();
 			String monsterUseHealMessage = " не использовал хилку";
@@ -59,7 +59,7 @@ public class FightFrame extends JFrame implements ActionListener {
 			SwingUtilities.invokeLater(UpdateInfo);
 			if (PlayFrame.readyPlayer.alive == false) {
 				new InfoFrame("Вы проиграли");
-				//System.exit(0);
+				return;
 			}
 			}
 		else if (e.getSource().equals(takeHeal)) {
