@@ -6,7 +6,7 @@ import javax.swing.Box;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import static java.lang.System.out;
+
 
 public class PlayFrame extends JFrame implements ActionListener{
 	private static final long serialVersionUID =1L;
