@@ -4,10 +4,10 @@ import javax.swing.JLabel;
 
 
 //Класс для вывода ошибок
-public class ErrorFrame extends JFrame {
+public class InfoFrame extends JFrame {
 	private static final long serialVersionUID =1L;
 	JLabel ErrorLabel;
-	public ErrorFrame(String ErrorString) {
+	public InfoFrame(String ErrorString) {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setLayout(new FlowLayout(FlowLayout.CENTER));
 		ErrorLabel = new JLabel(ErrorString);

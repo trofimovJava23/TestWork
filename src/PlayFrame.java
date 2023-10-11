@@ -53,9 +53,10 @@ public void actionPerformed(ActionEvent e) {
 		}
 	else if (e.getSource().equals(startButton)) {
 		if ((addPlayerButton.isEnabled() & addMonsterButton.isEnabled()) == false) {
-			
+			setVisible(false);
+			new FightFrame();
 		} else {
-			new ErrorFrame("Вы не готовы начать, введите данные");
+			new InfoFrame("Вы не готовы начать, введите данные");
 		}
 	}
 	

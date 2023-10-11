@@ -9,4 +9,8 @@ public class Monster extends Entity {
 		Monster someMonster = new Monster (someEntity.attack,someEntity.defence,someEntity.health,someEntity.healthMax,someEntity.minDamage,someEntity.maxDamage);
 		return someMonster;
 	}
+	
+	public autoHeal() {
+		this.Heal();
+	}
 }

@@ -98,7 +98,7 @@ class EnterFrame extends JFrame implements ActionListener {
 			
 			setVisible(false);		
 		} catch (NumberFormatException errFormat) {
-			new ErrorFrame("Вводите только положительные целые числа и заполните все поля");
+			new InfoFrame("Вводите только положительные целые числа и заполните все поля");
 		} catch (OutOfRangeException errAmount) {	
 		}
 		
